@@ -33,7 +33,6 @@ public class Account {
             stmt3.executeUpdate(sql3);
             String sql4 = "INSERT INTO balance VALUES('" + cardNumber + "', '0')";
             stmt4.executeUpdate(sql4);
-            c.close();
             System.out.println("\n\nNew Account was successfully created!\n");
             System.out.println("Card number :" + cardNumber);
             System.out.println("Pin : " + pin);
