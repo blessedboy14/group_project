@@ -40,7 +40,10 @@ public class Account {
             System.out.println("\n\nNew Account was successfully created!\n");
             System.out.println("Card number :" + cardNumber);
             System.out.println("Pin : " + pin);
-
+            stmt.close();
+            stmt2.close();
+            stmt3.close();
+            stmt4.close();
             return true;
         }catch (Exception e) {
             e.printStackTrace();
