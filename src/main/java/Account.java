@@ -17,7 +17,7 @@ public class Account {
 
         try(Connection c = DB.connection();Statement stmt = c.createStatement();
             Statement stmt2 = c.createStatement();Statement stmt3 = c.createStatement();
-            Statement stmt4 = c.createStatement())){
+            Statement stmt4 = c.createStatement()){
             String sql = "INSERT INTO users VALUES('" + this.firstName + "', '" + this.lastName + "', null)";
             stmt.executeUpdate(sql);
             String sql2 = "SELECT LAST_INSERT_ID()";
