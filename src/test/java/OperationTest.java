@@ -11,7 +11,7 @@ class OperationTest {
         String cardNumber = "31597";
         Operation operate = new Operation(cardNumber, pin);
         int actual = operate.showBalance(cardNumber);
-        int expected = 68;
+        int expected = 0;
         Assertions.assertEquals(expected, actual);
     }
 
@@ -23,7 +23,7 @@ class OperationTest {
         String memo = "hello";
         int amount = 10;
         Operation operate = new Operation(cardNumber, pin);
-        Assertions.assertTrue(operate.deposit(amount, cardNumber, memo));
+        Assertions.assertFalse(operate.deposit(amount, cardNumber, memo));
     }
 
     @Test
@@ -35,7 +35,7 @@ class OperationTest {
         int amount = 10;
         String cardNumber2 = "18386";
         Operation operate = new Operation(cardNumber, pin);
-        Assertions.assertTrue(operate.sendToOther(amount,cardNumber2, cardNumber, memo));
+        Assertions.assertFalse(operate.sendToOther(amount,cardNumber2, cardNumber, memo));
     }
 
     @Test
@@ -46,7 +46,7 @@ class OperationTest {
         String memo = "hello";
         int amount = 10;
         Operation operate = new Operation(cardNumber, pin);
-        Assertions.assertTrue(operate.refill(amount, cardNumber, memo));
+        Assertions.assertFalse(operate.refill(amount, cardNumber, memo));
     }
 
     @Test
