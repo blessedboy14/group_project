@@ -17,7 +17,7 @@ public class Account {
 
         try{
             Connection c = DB.connection();
-            Statement stmt;
+            Statement stmt = null;
             try{
                 stmt = c.createStatement();
             } catch(Exception e) {
@@ -25,7 +25,7 @@ public class Account {
             }
             String sql = "INSERT INTO users VALUES('" + this.firstName + "', '" + this.lastName + "', null)";
             stmt.executeUpdate(sql);
-            Statement stmt2;
+            Statement stmt2 = null;
             try{
                 stmt2 = c.createStatement();
             } catch(Exception e) {
@@ -39,7 +39,7 @@ public class Account {
             }
             String cardNumber = this.generateCardNumber();
             String pin = this.inputPIN();
-            Statement stmt3;
+            Statement stmt3 = null;
             try{
                 stmt3 = c.createStatement();
             } catch(Exception e) {
@@ -48,7 +48,7 @@ public class Account {
             String sql3 = "INSERT INTO card VALUES('" + lastCountId + "'" +
                     ", '" + cardNumber + "', '" +  pin + "')";
             stmt3.executeUpdate(sql3);
-            Statement stmt4;
+            Statement stmt4 = null;
             try{
                 stmt4 = c.createStatement();
             } catch(Exception e) {
