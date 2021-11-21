@@ -17,7 +17,7 @@ public class Account {
 
         try{
             Connection c = DB.connection();
-            Statement stmtж
+            Statement stmt;
             try{
                 stmt = c.createStatement();
             } catch(Exception e) {
