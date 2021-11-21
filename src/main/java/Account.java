@@ -15,12 +15,11 @@ public class Account {
 
     public Boolean register() {
 
-        try{
-            Connection c = DB.connection();
-            Statement stmt = c.createStatement();
+        try(Connection c = DB.connection();Statement stmt = c.createStatement();
+            Statement stmt2 = c.createStatement();Statement stmt3 = c.createStatement();
+            Statement stmt4 = c.createStatement())){
             String sql = "INSERT INTO users VALUES('" + this.firstName + "', '" + this.lastName + "', null)";
             stmt.executeUpdate(sql);
-            Statement stmt2 = c.createStatement();
             String sql2 = "SELECT LAST_INSERT_ID()";
             ResultSet rs = stmt2.executeQuery(sql2);
             int lastCountId = 0;
@@ -29,21 +28,15 @@ public class Account {
             }
             String cardNumber = this.generateCardNumber();
             String pin = this.inputPIN();
-            Statement stmt3 = c.createStatement();
             String sql3 = "INSERT INTO card VALUES('" + lastCountId + "'" +
                     ", '" + cardNumber + "', '" +  pin + "')";
             stmt3.executeUpdate(sql3);
-            Statement stmt4 = c.createStatement();
             String sql4 = "INSERT INTO balance VALUES('" + cardNumber + "', '0')";
             stmt4.executeUpdate(sql4);
             c.close();
             System.out.println("\n\nNew Account was successfully created!\n");
             System.out.println("Card number :" + cardNumber);
             System.out.println("Pin : " + pin);
-            stmt.close();
-            stmt2.close();
-            stmt3.close();
-            stmt4.close();
             return true;
         }catch (Exception e) {
             e.printStackTrace();
