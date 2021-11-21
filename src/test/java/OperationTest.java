@@ -55,6 +55,6 @@ class OperationTest {
         String pin = "sadaf";
         String cardNumber = "98346";
         Operation operate = new Operation(cardNumber, pin);
-        Assertions.assertTrue(operate.showTransHistory(cardNumber));
+        Assertions.assertFalse(operate.showTransHistory(cardNumber));
     }
 }
