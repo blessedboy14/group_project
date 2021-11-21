@@ -17,20 +17,10 @@ public class Account {
 
         try{
             Connection c = DB.connection();
-            Statement stmt = null;
-            try{
-                stmt = c.createStatement();
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
+            Statement stmt = c.createStatement();
             String sql = "INSERT INTO users VALUES('" + this.firstName + "', '" + this.lastName + "', null)";
             stmt.executeUpdate(sql);
-            Statement stmt2 = null;
-            try{
-                stmt2 = c.createStatement();
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
+            Statement stmt2 = c.createStatement();
             String sql2 = "SELECT LAST_INSERT_ID()";
             ResultSet rs = stmt2.executeQuery(sql2);
             int lastCountId = 0;
@@ -39,21 +29,11 @@ public class Account {
             }
             String cardNumber = this.generateCardNumber();
             String pin = this.inputPIN();
-            Statement stmt3 = null;
-            try{
-                stmt3 = c.createStatement();
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
+            Statement stmt3 = c.createStatement();
             String sql3 = "INSERT INTO card VALUES('" + lastCountId + "'" +
                     ", '" + cardNumber + "', '" +  pin + "')";
             stmt3.executeUpdate(sql3);
-            Statement stmt4 = null;
-            try{
-                stmt4 = c.createStatement();
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
+            Statement stmt4 = c.createStatement();
             String sql4 = "INSERT INTO balance VALUES('" + cardNumber + "', '0')";
             stmt4.executeUpdate(sql4);
             c.close();
