@@ -17,15 +17,17 @@ public class Account {
 
         try{
             Connection c = DB.connection();
+            Statement stmtж
             try{
-                Statement stmt = c.createStatement();
+                stmt = c.createStatement();
             } catch(Exception e) {
                 e.printStackTrace();
             }
             String sql = "INSERT INTO users VALUES('" + this.firstName + "', '" + this.lastName + "', null)";
             stmt.executeUpdate(sql);
+            Statement stmt2;
             try{
-                Statement stmt2 = c.createStatement();
+                stmt2 = c.createStatement();
             } catch(Exception e) {
                 e.printStackTrace();
             }
@@ -37,16 +39,18 @@ public class Account {
             }
             String cardNumber = this.generateCardNumber();
             String pin = this.inputPIN();
+            Statement stmt3;
             try{
-                Statement stmt3 = c.createStatement();
+                stmt3 = c.createStatement();
             } catch(Exception e) {
                 e.printStackTrace();
             }
             String sql3 = "INSERT INTO card VALUES('" + lastCountId + "'" +
                     ", '" + cardNumber + "', '" +  pin + "')";
             stmt3.executeUpdate(sql3);
+            Statement stmt4;
             try{
-                Statement stmt4 = c.createStatement();
+                stmt4 = c.createStatement();
             } catch(Exception e) {
                 e.printStackTrace();
             }
