@@ -46,7 +46,7 @@ public class BankAccount {
         }
         int option_user = 0;
         while (option_user < 1 || option_user > 6) {
-            System.out.print("\nType your choice: ");
+            System.out.print("\nIncorrect input.Please retry.\nType your choice: ");
             option_user = Integer.parseInt(sc.nextLine());
         }
         int balance = 0;
