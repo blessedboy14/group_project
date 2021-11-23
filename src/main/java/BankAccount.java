@@ -14,87 +14,17 @@ public class BankAccount {
         sc.close();
     }
 
-    public static boolean depositFunds(String cardNumber, Operation operate, Scanner sc) {
-        try {
-            Connection c = DB.connection();
-        } catch (Exception e) {
-            return false;
-        }
-        System.out.println("==== Make deposit ====");
-        int amount = 0;
-        while (amount <= 0 ) {
-            System.out.print("Type amount: ");
-            amount = Integer.parseInt(sc.nextLine());
-        }
-        System.out.print("Enter a memo: ");
-        String memo = sc.nextLine();
-        operate.deposit(amount, cardNumber, memo);
-        int balance = operate.showBalance(cardNumber);
-        System.out.println("\nCurrent balance is " + balance + "$");
-        return true;
-    }
-
-    public static boolean refillFunds(String numberCard, Operation operate, Scanner sc) {
-        try {
-            Connection c = DB.connection();
-        } catch (Exception e) {
-            return false;
-        }
-        System.out.println("==== Withdrawal funds ====");
-        int amount_yours = 0;
-        while (amount_yours <= 0) {
-            System.out.print("Type amount: ");
-            amount_yours = Integer.parseInt(sc.nextLine());
-        }
-        System.out.print("Enter a memo: ");
-        String memo = sc.nextLine();
-        operate.refill(amount_yours, numberCard, memo);
-        int your_balance = operate.showBalance(numberCard);
-        System.out.println("\nCurrent balance is " + your_balance + "$");
-        return true;
-    }
-
-    public static boolean transferFunds(String cardNumber, Operation operate, Scanner sc) {
-        try {
-            Connection c = DB.connection();
-        } catch (Exception e) {
-            return false;
-        }
-        System.out.println("==== Send money to other card ====");
-        System.out.print("Enter other client card number: ");
-        String number_other = sc.nextLine();
-        int amount_other = 0;
-        while (amount_other <= 0 ) {
-            System.out.print("Type amount: ");
-            amount_other = Integer.parseInt(sc.nextLine());
-        }
-        System.out.print("Enter a memo: ");
-        String memo = sc.nextLine();
-        operate.sendToOther(amount_other, number_other, cardNumber, memo);
-        System.out.println("\nYou sent " + amount_other + "$ to " + number_other);
-        return true;
-    }
-
-    public static boolean createAnAcc(Scanner sc) {
-        try {
-            Connection c = DB.connection();
-        } catch (Exception e) {
-            return false;
-        }
-        System.out.println("\n\n==== Create new Account ====\n");
-        System.out.print("Enter first name: ");
-        String firstName = sc.next().trim();
-        System.out.print("Enter last name: ");
-        String lastName = sc.next().trim();
-        Account anAcc = new Account(firstName, lastName);
-        anAcc.register();
-        return true;
-    }
-
+    /**
+     * This method returns main menu after success entrance
+     * @param sc
+     * @param operate
+     * @param cardNumber
+     * @return this method always returns true
+     */
     public static boolean mainMenu(Scanner sc, Operation operate, String cardNumber) {
-        try {
+        try{
             Connection c = DB.connection();
-        } catch (Exception e) {
+        }catch (Exception e) {
             return false;
         }
         System.out.println("Enter an option");
@@ -104,6 +34,11 @@ public class BankAccount {
         System.out.println("4. Send to other person");
         System.out.println("5. Show account transaction history(5 records)");
         System.out.println("6. Exit");
+        try {
+            Connection c = DB.connection();
+        } catch (Exception e) {
+            return false;
+        }
         int option_user = 0;
         while (option_user < 1 || option_user > 6) {
             System.out.print("\nType your choice: ");
@@ -116,9 +51,46 @@ public class BankAccount {
                 balance = operate.showBalance(cardNumber);
                 System.out.println("\nYour balance is " + balance + "$");
             }
-            case 2 -> depositFunds(cardNumber, operate, sc);
-            case 3 -> refillFunds(cardNumber, operate, sc);
-            case 4 -> transferFunds(cardNumber, operate, sc);
+            case 2 -> {
+                System.out.println("==== Make deposit ====");
+                int amount = 0;
+                while (amount <= 0 ) {
+                    System.out.print("Type amount: ");
+                    amount = Integer.parseInt(sc.nextLine());
+                }
+                System.out.print("Enter a memo: ");
+                String memo = sc.nextLine();
+                operate.deposit(amount, cardNumber, memo);
+                balance = operate.showBalance(cardNumber);
+                System.out.println("\nCurrent balance is " + balance + "$");
+            }
+            case 3 -> {
+                System.out.println("==== Withdrawal funds ====");
+                int amount_yours = 0;
+                while (amount_yours <= 0) {
+                    System.out.print("Type amount: ");
+                    amount_yours = Integer.parseInt(sc.nextLine());
+                }
+                System.out.print("Enter a memo: ");
+                String memo = sc.nextLine();
+                operate.refill(amount_yours, cardNumber, memo);
+                int your_balance = operate.showBalance(cardNumber);
+                System.out.println("\nCurrent balance is " + your_balance + "$");
+            }
+            case 4 -> {
+                System.out.println("==== Send money to other card ====");
+                System.out.print("Enter other client card number: ");
+                String number_other = sc.nextLine();
+                int amount_other = 0;
+                while (amount_other <= 0 ) {
+                    System.out.print("Type amount: ");
+                    amount_other = Integer.parseInt(sc.nextLine());
+                }
+                System.out.print("Enter a memo: ");
+                String memo = sc.nextLine();
+                operate.sendToOther(amount_other, number_other, cardNumber, memo);
+                System.out.println("\nYou sent " + amount_other + "$ to " + number_other);
+            }
             case 5 -> operate.showTransHistory(cardNumber);
             case 6 -> {
                 System.out.println("\nSee you next time space cowboy...\n");
@@ -132,10 +104,15 @@ public class BankAccount {
         return true;
     }
 
+    /**
+     * This method prints sign in steps for user
+     * @param sc
+     * @return this method always returns true
+     */
     public static boolean mainMenuA(Scanner sc){
-        try {
+        try{
             Connection c = DB.connection();
-        } catch (Exception e) {
+        }catch (Exception e) {
             return false;
         }
         while (!isLogin) {
@@ -181,10 +158,15 @@ public class BankAccount {
         return true;
     }
 
+    /**
+     * This method prints start menu with 2 choices
+     * @param sc
+     * @return this method always returns true
+     */
     public static boolean regOrLog(Scanner sc) {
-        try {
+        try{
             Connection c = DB.connection();
-        } catch (Exception e) {
+        }catch (Exception e) {
             return false;
         }
         sc.nextLine();
@@ -203,7 +185,13 @@ public class BankAccount {
         }
         switch(option) {
             case 1:
-                createAnAcc(sc);
+                System.out.println("\n\n==== Create new Account ====\n");
+                System.out.print("Enter first name: ");
+                String firstName = sc.next().trim();
+                System.out.print("Enter last name: ");
+                String lastName = sc.next().trim();
+                Account anAcc = new Account(firstName, lastName);
+                anAcc.register();
                 break;
             case 2:
                 mainMenuA(sc);
@@ -212,5 +200,4 @@ public class BankAccount {
         regOrLog(sc);
         return true;
     }
-
 }
