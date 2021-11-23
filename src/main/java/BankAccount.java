@@ -104,7 +104,7 @@ public class BankAccount {
      * @return this method always returns true
      */
     public static boolean mainMenuA(Scanner sc){
-        try(Connection c = DB.connection()){
+        try(Connection c1 = DB.connection()){
             while (!isLogin) {
             System.out.println("\n\n==== Sign In ====\n");
             System.out.print("Enter your card number: ");
