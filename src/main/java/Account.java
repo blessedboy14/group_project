@@ -75,19 +75,5 @@ public class Account {
         return pin;
     }
 
-    /**
-     * This method generates new unique card number
-     * @return unique card number with 5 symbols
-     */
-    public String generateCardNumber() {
-        String uuid;
-        Random rng = new Random();
-        int len = 5;
-        uuid = "";
-        for (int c = 0; c < len; c++) {
-            uuid += ((Integer)rng.nextInt(10)).toString();
-        }
-        return uuid;
-    }
-}
+    
 
