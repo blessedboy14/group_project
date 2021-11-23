@@ -40,8 +40,7 @@ public class BankAccount {
         System.out.println("4. Send to other person");
         System.out.println("5. Show account transaction history(5 records)");
         System.out.println("6. Exit");
-        try {
-            Connection c = DB.connection();
+        try(Connection c = DB.connection()){
         } catch (Exception e) {
             return false;
         }
@@ -116,6 +115,10 @@ public class BankAccount {
      * @return this method always returns true
      */
     public static boolean mainMenuA(Scanner sc){
+        try(Connection c = DB.connection()){
+        } catch (Exception e) {
+            return false;
+        }
         while (!isLogin) {
             System.out.println("\n\n==== Sign In ====\n");
             System.out.print("Enter your card number: ");
@@ -123,9 +126,8 @@ public class BankAccount {
             System.out.print("Enter your pin code: ");
             String pin = sc.nextLine();
             Operation operate = new Operation(cardNumber, pin);
-            try {
-                Connection c = DB.connection();
-                Statement stmt7 = c.createStatement();
+            try(Connection c = DB.connection();
+                Statement stmt7 = c.createStatement()){
                 String sql7 = "SELECT * FROM card WHERE cardNumber ='" + cardNumber + "' AND pin='" + pin + "'";
                 ResultSet rs = stmt7.executeQuery(sql7);
                 if (rs.next()) {
@@ -165,6 +167,10 @@ public class BankAccount {
      * @return this method always returns true
      */
     public static boolean regOrLog(Scanner sc) {
+        try(Connection c = DB.connection()){
+        } catch (Exception e) {
+            return false;
+        }
         sc.nextLine();
         int option = 0;
         while (option == 0) {
