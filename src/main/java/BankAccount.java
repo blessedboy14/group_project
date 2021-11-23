@@ -33,7 +33,13 @@ public class BankAccount {
      * @return this method always returns true
      */
     public static boolean mainMenu(Scanner sc, Operation operate, String cardNumber) {
-        
+        System.out.println("Enter an option");
+        System.out.println("1. Balance");
+        System.out.println("2. Deposit");
+        System.out.println("3. Withdrawal");
+        System.out.println("4. Send to other person");
+        System.out.println("5. Show account transaction history(5 records)");
+        System.out.println("6. Exit");
         try(Connection c = DB.connection()){
         } catch (Exception e) {
             return false;
