@@ -63,17 +63,7 @@ public class Account {
         }
     }
 
-    /**
-     * This method gets Pin from user
-     * @return pin for new user
-     */
-    public String inputPIN() {
-        String pin;
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter your pin-code: ");
-        pin = sc.nextLine();
-        return pin;
-    }
+   
 
  /**
      * This method generates new unique card number
