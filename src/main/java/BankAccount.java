@@ -15,6 +15,11 @@ public class BankAccount {
     }
 
     public static boolean depositFunds(String cardNumber, Operation operate, Scanner sc) {
+        try {
+            Connection c = DB.connection();
+        } catch (Exception e) {
+            return false;
+        }
         System.out.println("==== Make deposit ====");
         int amount = 0;
         while (amount <= 0 ) {
@@ -30,6 +35,11 @@ public class BankAccount {
     }
 
     public static boolean refillFunds(String numberCard, Operation operate, Scanner sc) {
+        try {
+            Connection c = DB.connection();
+        } catch (Exception e) {
+            return false;
+        }
         System.out.println("==== Withdrawal funds ====");
         int amount_yours = 0;
         while (amount_yours <= 0) {
@@ -45,6 +55,11 @@ public class BankAccount {
     }
 
     public static boolean transferFunds(String cardNumber, Operation operate, Scanner sc) {
+        try {
+            Connection c = DB.connection();
+        } catch (Exception e) {
+            return false;
+        }
         System.out.println("==== Send money to other card ====");
         System.out.print("Enter other client card number: ");
         String number_other = sc.nextLine();
@@ -61,6 +76,11 @@ public class BankAccount {
     }
 
     public static boolean createAnAcc(Scanner sc) {
+        try {
+            Connection c = DB.connection();
+        } catch (Exception e) {
+            return false;
+        }
         System.out.println("\n\n==== Create new Account ====\n");
         System.out.print("Enter first name: ");
         String firstName = sc.next().trim();
@@ -72,6 +92,11 @@ public class BankAccount {
     }
 
     public static boolean mainMenu(Scanner sc, Operation operate, String cardNumber) {
+        try {
+            Connection c = DB.connection();
+        } catch (Exception e) {
+            return false;
+        }
         System.out.println("Enter an option");
         System.out.println("1. Balance");
         System.out.println("2. Deposit");
@@ -108,6 +133,11 @@ public class BankAccount {
     }
 
     public static boolean mainMenuA(Scanner sc){
+        try {
+            Connection c = DB.connection();
+        } catch (Exception e) {
+            return false;
+        }
         while (!isLogin) {
             System.out.println("\n\n==== Sign In ====\n");
             System.out.print("Enter your card number: ");
@@ -152,6 +182,11 @@ public class BankAccount {
     }
 
     public static boolean regOrLog(Scanner sc) {
+        try {
+            Connection c = DB.connection();
+        } catch (Exception e) {
+            return false;
+        }
         sc.nextLine();
         int option = 0;
         while (option == 0) {
