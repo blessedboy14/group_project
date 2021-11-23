@@ -1,7 +1,7 @@
 import java.sql.*;
 
 /**
- * @author Prokopchuk Daniil, Darya Samusenko, Alexandr Strukov
+ * @author Prokopchuk Daniil, Darya Samusenko, Alexander Strukov
  * @version 1.0
  */
 public class DB {
