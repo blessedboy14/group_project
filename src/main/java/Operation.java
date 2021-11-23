@@ -50,9 +50,8 @@ public class Operation {
      * @return current user balance
      */
     public int showBalance (String cardNumber) {
-        try {
-            Connection c = DB.connection();
-            Statement stmt5 = c.createStatement();
+        try(Connection c = DB.connection();
+            Statement stmt5 = c.createStatement()){
             String sql5 = "SELECT * FROM balance WHERE cardNumber='"+ cardNumber + "'";
             ResultSet rs = stmt5.executeQuery(sql5);
             while (rs.next()) {
@@ -72,13 +71,12 @@ public class Operation {
      * @return true if success and false if error
      */
     public boolean deposit(int amount, String cardNumber, String memo){
-        try {
-            Connection c = DB.connection();
+        try(Connection c = DB.connection();
             Statement stmt6 = c.createStatement();
+            Statement stmt = c.createStatement()){
             String sql6 = "UPDATE balance SET balance= balance + '" + amount + "' WHERE cardNumber='" +
                     cardNumber + "'";
             stmt6.executeUpdate(sql6);
-            Statement stmt = c.createStatement();
             String sql = "INSERT INTO transactions VALUES(null,  NOW() , '" + memo + "', '"
             + amount + "', '" + cardNumber + "')";
             stmt.executeUpdate(sql);
@@ -97,21 +95,20 @@ public class Operation {
      * @param memo message with this transaction
      * @return  true if success and false if error
      */
-    public boolean sendToOther(int amount_other, String number_other, String cardNumber, String memo) {
-        try {
-            Connection c = DB.connection();
+    public boolean sendToOther(int amountOther, String numberOther, String cardNumber, String memo) {
+        try(Connection c = DB.connection();
             Statement stmt7 = c.createStatement();
-            String sql7 = "UPDATE balance SET balance = balance + '" + amount_other + "' WHERE cardNumber='" +
-                    number_other + "'";
-            stmt7.executeUpdate(sql7);
             Statement stmt8 = c.createStatement();
-            String sql8 = "UPDATE balance SET balance = balance - '" + amount_other + "' WHERE cardNumber='" +
+            Statement stmt = c.createStatement()){
+            String sql7 = "UPDATE balance SET balance = balance + '" + amountOther + "' WHERE cardNumber='" +
+                    numberOther + "'";
+            stmt7.executeUpdate(sql7);
+            String sql8 = "UPDATE balance SET balance = balance - '" + amountOther + "' WHERE cardNumber='" +
                     cardNumber + "'";
             stmt8.executeUpdate(sql8);
-            amount_other = -amount_other;
-            Statement stmt = c.createStatement();
+            amountOther = -amountOther;
             String sql = "INSERT INTO transactions VALUES(null,  NOW() , '" + memo + "', '"
-                    + amount_other + "', '" + cardNumber + "')";
+                    + amountOther + "', '" + cardNumber + "')";
             stmt.executeUpdate(sql);
             return true;
         }catch(Exception e) {
@@ -128,13 +125,12 @@ public class Operation {
      * @return true if success and false if error
      */
     public boolean withdrawal(int amount, String cardNumber, String memo) {
-        try{
-            Connection c = DB.connection();
+        try(Connection c = DB.connection();
             Statement stmt = c.createStatement();
+            Statement stmt2 = c.createStatement()){
             String sql = "UPDATE balance SET balance = balance - '" + amount + "' WHERE cardNumber='" +
                     cardNumber + "'";
             stmt.executeUpdate(sql);
-            Statement stmt2 = c.createStatement();
             amount = -amount;
             String sql2 = "INSERT INTO transactions VALUES(null,  NOW() , '" + memo + "', '"
                     + amount + "', '" + cardNumber + "')";
@@ -152,9 +148,8 @@ public class Operation {
      * @return true if success and false if error
      */
     public boolean showTransHistory(String cardNumber) {
-        try{
-            Connection c = DB.connection();
-            Statement stmt = c.createStatement();
+        try(Connection c = DB.connection();
+            Statement stmt = c.createStatement()){
             String sql = "SELECT * FROM transactions WHERE cardNumber='" + cardNumber + "' ORDER BY datetime DESC";
             ResultSet rs = stmt.executeQuery(sql);
             String result = "\n";
