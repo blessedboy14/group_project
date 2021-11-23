@@ -7,7 +7,20 @@ import java.util.Date;
  */
 public class Operation {
 
-    
+    /**
+     * This is card number for operations
+     */
+    private String cardNumber;
+
+    /**
+     * This is pin code number for operations
+     */
+    private String pinCode;
+
+    /**
+     * This is balance field for operations
+     */
+    private int balance; 
 
     /**
      * This is datetime field for operations
