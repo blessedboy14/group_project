@@ -46,7 +46,7 @@ class OperationTest {
         String memo = "hello";
         int amount = 10;
         Operation operate = new Operation(cardNumber, pin);
-        Assertions.assertFalse(operate.refill(amount, cardNumber, memo));
+        Assertions.assertFalse(operate.withdrawal(amount, cardNumber, memo));
     }
 
     @Test
