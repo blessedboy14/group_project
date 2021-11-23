@@ -1,1 +1,24 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
+class BankAccount {
+
+    @Test
+    @DisplayName("range test")
+    void generateCardNumber(){
+        String num = "0";
+        Account anAcc = new Account("Иван", "Петров");
+        boolean expected = (num == anAcc.generateCardNumber());
+        Assertions.assertFalse(expected);
+    }
+    
+    @Test
+    @DisplayName("range test")
+    void register(){
+        String num = "0";
+        Account anAcc = new Account("Иван", "Петров");
+        boolean expected = anAcc.register();
+        Assertions.assertFalse(expected);
+    }
+}
