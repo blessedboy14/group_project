@@ -70,23 +70,7 @@ public class Operation {
      * @param memo message with this transaction
      * @return true if success and false if error
      */
-    public boolean deposit(int amount, String cardNumber, String memo){
-        try(Connection c = DB.connection();
-            Statement stmt6 = c.createStatement();
-            Statement stmt = c.createStatement()){
-            String sql6 = "UPDATE balance SET balance= balance + '" + amount + "' WHERE cardNumber='" +
-                    cardNumber + "'";
-            stmt6.executeUpdate(sql6);
-            String sql = "INSERT INTO transactions VALUES(null,  NOW() , '" + memo + "', '"
-            + amount + "', '" + cardNumber + "')";
-            stmt.executeUpdate(sql);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
+    
     /**
      * This method makes transfer to other card owner
      * @param amount_other amount to send to other guy
