@@ -166,40 +166,5 @@ public class BankAccount {
      * @param sc Scanner for this method
      * @return this method always returns true
      */
-    public static boolean regOrLog(Scanner sc) {
-        try(Connection c = DB.connection()){
-        } catch (Exception e) {
-            return false;
-        }
-        sc.nextLine();
-        int option = 0;
-        while (option == 0) {
-
-            System.out.println("==== Select option: ====");
-            System.out.println("1. Create account");
-            System.out.println("2. Sign In\n");
-            System.out.print("Enter option: ");
-            option = Integer.parseInt(sc.nextLine());
-            while (option < 1 || option > 2){
-                System.out.print("Incorrect choice!Repeat plz: ");
-                option = Integer.parseInt(sc.nextLine());
-            }
-        }
-        switch(option) {
-            case 1:
-                System.out.println("\n\n==== Create new Account ====\n");
-                System.out.print("Enter first name: ");
-                String firstName = sc.next().trim();
-                System.out.print("Enter last name: ");
-                String lastName = sc.next().trim();
-                Account anAcc = new Account(firstName, lastName);
-                anAcc.register();
-                break;
-            case 2:
-                mainMenuA(sc);
-                break;
-        }
-        regOrLog(sc);
-        return true;
-    }
+    
 }
