@@ -146,5 +146,23 @@ public class Operation {
      * @param cardNumber card number of current user
      * @return true if success and false if error
      */
-    
+    public boolean showTransHistory(String cardNumber) {
+        try(Connection c = DB.connection();
+            Statement stmt = c.createStatement()){
+            String sql = "SELECT * FROM transactions WHERE cardNumber='" + cardNumber + "' ORDER BY datetime DESC";
+            ResultSet rs = stmt.executeQuery(sql);
+            String result = "\n";
+            int count = 0;
+            while(rs.next() && count < 5){
+                result += rs.getString(2) + "  " + rs.getString(3) + "  " + rs.getString(4)
+                        + "$\n";
+                count++;
+            }
+            System.out.print(result);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
