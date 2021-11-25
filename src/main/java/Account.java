@@ -31,7 +31,7 @@ public class Account {
      * This method do all registration processes
      * @return true if success, else false
      */
-    public Boolean register() {
+    public Boolean register() throws Exception{
 
         try(Connection c = DB.connection();Statement stmt = c.createStatement();
             Statement stmt2 = c.createStatement();Statement stmt3 = c.createStatement();
