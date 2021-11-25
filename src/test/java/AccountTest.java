@@ -6,6 +6,15 @@ class AccountTest {
     
     @Test
     @DisplayName("range test")
+    void generateCardNumber(){
+        String num = "0";
+        Account anAcc = new Account("Иван", "Петров");
+        boolean expected = (num == anAcc.generateCardNumber());
+        Assertions.assertFalse(expected);
+    }
+    
+    @Test
+    @DisplayName("range test")
     void register(){
         String num = "0";
         Account anAcc = new Account("Иван", "Петров");
