@@ -59,7 +59,7 @@ public class BankAccount {
             case 2 -> {
                 System.out.println("==== Make deposit ====");
                 int amount = 0;
-                boolean isIncorrect;
+                boolean isIncorrect = true;
                 do{
                     isIncorrect  = false;
                     System.out.print("Type amount: ");
@@ -91,7 +91,7 @@ public class BankAccount {
             case 3 -> {
                 System.out.println("==== Withdrawal funds ====");
                 int amount_yours = 0;
-                boolean isIncorrect;
+                boolean isIncorrect = true;
                 do{
                     isIncorrect = false;
                     System.out.print("Type amount: ");
@@ -125,7 +125,7 @@ public class BankAccount {
                 System.out.print("Enter other client card number: ");
                 String number_other = sc.nextLine();
                 int amount_other = 0;
-                boolean isIncorrect;
+                boolean isIncorrect = true;
                 do{
                     isIncorrect = false;
                     System.out.print("Type amount: ");
