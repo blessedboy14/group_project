@@ -59,10 +59,29 @@ public class BankAccount {
             case 2 -> {
                 System.out.println("==== Make deposit ====");
                 int amount = 0;
-                while (amount <= 0 ) {
+                boolean isIncorrect;
+                do{
+                    isIncorrect  = false;
                     System.out.print("Type amount: ");
-                    amount = Integer.parseInt(sc.nextLine());
-                }
+                    try{
+                        amount = Integer.parseInt(sc.nextLine());
+                    }catch(NumberFormatException e){
+                        isIncorrect = true;
+                        System.out.println("Incorrect input. Please retry.");
+                    }
+                    if ((!isIncorrect)&&(amount < 0)){
+                        isIncorrect = true;
+                        System.out.println("Amount is under zero. Please retry.");
+                    }
+                    if ((!isIncorrect)&&(amount == 0)){
+                        isIncorrect = true;
+                        System.out.println("Are you serious?");
+                    }
+                    if ((!isIncorrect)&&(amount > 32767){
+                        isIncorrect = true;
+                        System.out.println("Wow, man... That is too much. Please do it by parts.");
+                    }
+                }while (isIncorrect);
                 System.out.print("Enter a memo: ");
                 String memo = sc.nextLine();
                 operate.deposit(amount, cardNumber, memo);
@@ -72,10 +91,29 @@ public class BankAccount {
             case 3 -> {
                 System.out.println("==== Withdrawal funds ====");
                 int amount_yours = 0;
-                while (amount_yours <= 0) {
+                boolean isIncorrect;
+                do{
+                    isIncorrect = false;
                     System.out.print("Type amount: ");
-                    amount_yours = Integer.parseInt(sc.nextLine());
-                }
+                    try{
+                        amount_yours = Integer.parseInt(sc.nextLine());
+                    }catch(NumberFormatException e){
+                        isIncorrect = true;
+                        System.out.println("Incorrect input. Please retry.");
+                    }
+                    if ((!isIncorrect)&&(amount_yours < 0){
+                        isIncorrect = true;
+                        System.out.println("Amount is under zero. Please retry.");
+                    }
+                    if ((!isIncorrect)&&(amount_yours == 0)){
+                        isIncorrect = true;
+                        System.out.println("Are you serious?");
+                    }
+                    if ((!isIncorrect)&&(amount_yours > 32767){
+                        isIncorrect = true;
+                        System.out.println("Wow, man... That is too much. Please do it by parts.");
+                    }
+                }while (isIncorrect);
                 System.out.print("Enter a memo: ");
                 String memo = sc.nextLine();
                 operate.withdrawal(amount_yours, cardNumber, memo);
@@ -87,10 +125,29 @@ public class BankAccount {
                 System.out.print("Enter other client card number: ");
                 String number_other = sc.nextLine();
                 int amount_other = 0;
-                while (amount_other <= 0 ) {
+                boolean isIncorrect;
+                do{
+                    isIncorrect = false;
                     System.out.print("Type amount: ");
-                    amount_other = Integer.parseInt(sc.nextLine());
-                }
+                    try{
+                        amount_other = Integer.parseInt(sc.nextLine());
+                    }catch(NumberFormatException e){
+                        isIncorrect = true;
+                        System.out.println("Incorrect input. Please retry.");
+                    }
+                    if ((!isIncorrect)&&(amount_other < 0){
+                        isIncorrect = true;
+                        System.out.println("Amount is under zero. Please retry.");
+                    }
+                    if ((!isIncorrect)&&(amount_other == 0)){
+                        isIncorrect = true;
+                        System.out.println("Are you serious?");
+                    }
+                    if ((!isIncorrect)&&(amount_other > 32767){
+                        isIncorrect = true;
+                        System.out.println("Wow, man... That is too much. Please do it by parts.");
+                    }
+                }while (isIncorrect);
                 System.out.print("Enter a memo: ");
                 String memo = sc.nextLine();
                 operate.sendToOther(amount_other, number_other, cardNumber, memo);
